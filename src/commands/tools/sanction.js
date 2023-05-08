@@ -8,20 +8,25 @@ module.exports = {
             option.setName("concerne")
                 .setDescription("Membre qui sera concerné par la sanction.")
                 .setRequired(true))
+        .addStringOption(option => 
+            option.setName("raison")
+                .setDescription('La raison de la sanction')
+                .setRequired(true))
         .setDescription('Débute une sanction envers un membre.'),
+        
         
     async execute(interaction, client){
 
         if(interaction.member.permissions.has(PermissionsBitField.Flags.KickMembers)){
             const target = interaction.options.getUser('concerne');
+            const sReason = interaction.options.getString("raison");
             const embed = new EmbedBuilder()
                 .setAuthor({
                     name:"Haute Autorité du Corps des Ingénieurs de la République Galactique (HACIRG)",
                     iconURL:"https://cdn.discordapp.com/attachments/1011024611166662726/1104487408436776992/final.png"
                 })
-                .setTitle("< Procédère disciplinaire lancée >")
+                .setTitle("Début d'une procédure disciplinaire.")
                 .setColor('DarkPurple')
-                .setDescription("Si besoin, demandez ajout de nouvelles informations.")
                 .setFooter({
                     text:`Éxécuté par : ${interaction.user.tag}`,
                     iconURL: interaction.user.displayAvatarURL()
@@ -47,10 +52,12 @@ module.exports = {
             }
 
             global.setTarget = target;
+            global.sancRaison = sReason;
 
             interaction.reply({
                 embeds: [embed],
-                components: [new ActionRowBuilder().addComponents(kickButton).addComponents(banButton)]
+                components: [new ActionRowBuilder().addComponents(kickButton).addComponents(banButton)],
+                ephemeral: true
             })
 
         }else{

@@ -2,13 +2,13 @@ const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder,PermissionsBi
 
 module.exports = {
     data: {
-        name: "sKickButton"
+        name: "sBanButton"
     },
     async execute(interaction, client){
         if(interaction.member.permissions.has(PermissionsBitField.Flags.KickMembers)){
             target = global.setTarget;
             reason = global.sancRaison;
-            global.sActionType = "kick"; 
+            global.sActionType = "ban"; 
             const embed = new EmbedBuilder()
             .setAuthor({
                 name:"Haute Autorité du Corps des Ingénieurs de la République Galactique (HACIRG)",
@@ -20,7 +20,7 @@ module.exports = {
                     value: `${reason}`
                 }
             ])
-            .setTitle("Confirmez l'action : kick ")
+            .setTitle("Confirmez l'action : ban ")
             .setColor('Red')
             .setDescription("Note: il ne sera pas possible de revenir en arrière post-confirmation.")
             .setFooter({
