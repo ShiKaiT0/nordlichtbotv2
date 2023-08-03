@@ -1,0 +1,3 @@
+# SWRP : Bot Ingénieur
+
+Alors bon, concrètement on est sur ce que le titre vous explique, ni plus ni moins, je ne vais pas faire un guide très très avancé puisque le bot fonctionne sous commandes / alors bon...
